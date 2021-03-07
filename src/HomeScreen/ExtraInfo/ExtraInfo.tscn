@@ -1,0 +1,107 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/buttonStyles/buttonText.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/Kenney Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/buttonStyles/disabled.tres" type="StyleBox" id=3]
+[ext_resource path="res://assets/buttonStyles/pressed.tres" type="StyleBox" id=4]
+[ext_resource path="res://assets/buttonStyles/normal.tres" type="StyleBox" id=5]
+[ext_resource path="res://assets/buttonStyles/hover.tres" type="StyleBox" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[node name="ExtraInfo" type="Node2D"]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 720.0
+margin_bottom = 132.0
+rect_min_size = Vector2( 720, 0 )
+custom_constants/separation = 22
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 720.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 720, 64 )
+custom_fonts/font = ExtResource( 1 )
+text = "Extra Info "
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+margin_top = 86.0
+margin_right = 720.0
+margin_bottom = 488.0
+rect_min_size = Vector2( 720, 64 )
+custom_fonts/font = SubResource( 1 )
+text = "Hello, thank you so much for trying this app out
+I'm sorry for the lack of customizability in the 
+app. This is a work in progress and IDK if I will 
+continue working on it. That is why I made this open
+source. So if you want, edit it and have fun.
+
+The font you are reading is made by Kenny Assets 
+most amazing free asset perseon ever 
+
+If you have any questions or just want to tell
+me how good or bad this app is please email
+realnadlabs@ at gmail.com 
+
+I also do Godot youtube videos if you are intersted
+button down below"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 510.0
+margin_right = 720.0
+margin_bottom = 566.0
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 103.0
+margin_right = 255.0
+margin_bottom = 56.0
+size_flags_horizontal = 6
+custom_styles/hover = ExtResource( 6 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/disabled = ExtResource( 3 )
+custom_styles/normal = ExtResource( 5 )
+custom_fonts/font = ExtResource( 1 )
+text = "github"
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 447.0
+margin_right = 635.0
+margin_bottom = 56.0
+size_flags_horizontal = 6
+custom_styles/hover = ExtResource( 6 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/disabled = ExtResource( 3 )
+custom_styles/normal = ExtResource( 5 )
+custom_fonts/font = ExtResource( 1 )
+text = "youtube"
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+margin_top = 588.0
+margin_right = 720.0
+margin_bottom = 652.0
+rect_min_size = Vector2( 720, 64 )
+custom_fonts/font = SubResource( 1 )
+text = "Click B or H to go back or home res[ectively"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

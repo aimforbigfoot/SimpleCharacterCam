@@ -1,0 +1,35 @@
+extends Control
+
+func _ready() -> void:
+	OS.window_per_pixel_transparency_enabled = false
+	get_tree().get_root().set_transparent_background(false)
+
+#func _physics_process(delta: float) -> void:
+#	if Input.is_action_just_pressed("b"):
+#		get_tree().change_scene("res://src/floatingCam/MainScene.tscn")
+
+
+func _on_FACE(color: Color) -> void:
+	Global.faceCol = color
+
+
+func _on_IRIS(color: Color) -> void:
+	Global.irisCol = color
+
+
+func _on_EYELID(color: Color) -> void:
+	Global.eyeLidCol = color
+
+
+func _on_PUPILCOl(color: Color) -> void:
+	Global.pupilCol = color
+
+
+func _on_MOUTH(color: Color) -> void:
+	Global.mouthCol = color
+
+
+
+
+func _on_Button_pressed() -> void:
+	get_tree().change_scene("res://src/floatingCam/MainScene.tscn")
