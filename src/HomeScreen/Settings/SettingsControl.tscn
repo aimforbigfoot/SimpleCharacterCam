@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/HomeScreen/Settings/SettingsControl.gd" type="Script" id=1]
 [ext_resource path="res://assets/Kenney Bold.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://src/HomeScreen/Settings/BaseColorPicker.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/testStyles.tres" type="DynamicFont" id=4]
 [ext_resource path="res://assets/buttonStyles/disabled.tres" type="StyleBox" id=5]
 [ext_resource path="res://assets/buttonStyles/pressed.tres" type="StyleBox" id=6]
 [ext_resource path="res://assets/buttonStyles/normal.tres" type="StyleBox" id=7]
@@ -11,6 +12,21 @@
 [sub_resource type="DynamicFont" id=1]
 size = 32
 font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 12
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxLine" id=5]
+color = Color( 0.152941, 0.729412, 0.215686, 1 )
+thickness = 10
+
+[sub_resource type="StyleBoxLine" id=6]
+thickness = 10
+
+[sub_resource type="StyleBoxLine" id=7]
+color = Color( 0.180392, 0.180392, 0.203922, 1 )
+thickness = 10
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
@@ -52,71 +68,148 @@ margin_top = 68.0
 margin_bottom = 116.0
 
 [node name="Label" parent="VBoxContainer/FACE" index="0"]
-margin_left = 257.0
-margin_right = 337.0
+margin_left = 223.0
+margin_right = 371.0
 text = "FACE COLOR"
 
 [node name="ColorPickerButton" parent="VBoxContainer/FACE" index="1"]
-margin_left = 375.0
-margin_right = 463.0
+margin_left = 409.0
+margin_right = 497.0
 
 [node name="IRIS" parent="VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 136.0
 margin_bottom = 184.0
 
 [node name="Label" parent="VBoxContainer/IRIS" index="0"]
-margin_left = 260.0
-margin_right = 334.0
+margin_left = 231.0
+margin_right = 363.0
 text = "IRIS COLOR"
 
 [node name="ColorPickerButton" parent="VBoxContainer/IRIS" index="1"]
-margin_left = 372.0
-margin_right = 460.0
+margin_left = 401.0
+margin_right = 489.0
 
 [node name="EYELIDCoL" parent="VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 204.0
 margin_bottom = 252.0
 
 [node name="Label" parent="VBoxContainer/EYELIDCoL" index="0"]
-margin_left = 251.0
-margin_right = 343.0
+margin_left = 211.0
+margin_right = 383.0
 text = "EYELID COLOR"
 
 [node name="ColorPickerButton" parent="VBoxContainer/EYELIDCoL" index="1"]
-margin_left = 381.0
-margin_right = 469.0
+margin_left = 421.0
+margin_right = 509.0
 
 [node name="PUPILCOL" parent="VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 272.0
 margin_bottom = 320.0
 
 [node name="Label" parent="VBoxContainer/PUPILCOL" index="0"]
-margin_left = 253.0
-margin_right = 340.0
+margin_left = 219.0
+margin_right = 375.0
 text = "PUPIL COLOR"
 
 [node name="ColorPickerButton" parent="VBoxContainer/PUPILCOL" index="1"]
-margin_left = 378.0
-margin_right = 466.0
+margin_left = 413.0
+margin_right = 501.0
 
 [node name="MOUTHCOL" parent="VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 340.0
 margin_bottom = 388.0
 
 [node name="Label" parent="VBoxContainer/MOUTHCOL" index="0"]
-margin_left = 247.0
-margin_right = 346.0
+margin_left = 215.0
+margin_right = 379.0
 text = "MOUTH COLOR"
 
 [node name="ColorPickerButton" parent="VBoxContainer/MOUTHCOL" index="1"]
-margin_left = 384.0
-margin_right = 472.0
+margin_left = 417.0
+margin_right = 505.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 408.0
+margin_right = 720.0
+margin_bottom = 468.0
+custom_constants/separation = 38
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 49.0
+margin_right = 671.0
+margin_bottom = 60.0
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_right = 622.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 4 )
+text = "Change voice sensitivity"
+align = 1
+valign = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 28.0
+margin_right = 622.0
+margin_bottom = 60.0
+custom_constants/separation = 12
+alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_top = 7.0
+margin_right = 168.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 4 )
+text = "low sensitivity 0"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 180.0
+margin_right = 436.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 256, 32 )
+custom_styles/slider = SubResource( 5 )
+custom_styles/grabber_area_highlight = SubResource( 6 )
+custom_styles/grabber_area = SubResource( 7 )
+max_value = 2.0
+step = 0.1
+value = 1.0
+tick_count = 19
+ticks_on_borders = true
+
+[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 448.0
+margin_top = 7.0
+margin_right = 622.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 4 )
+text = "High sensitivity 2"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 488.0
+margin_right = 720.0
+margin_bottom = 528.0
+alignment = 1
+
+[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer2"]
+margin_left = 222.0
+margin_top = 8.0
+margin_right = 418.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 4 )
+text = "Allow blinking"
+align = 1
+valign = 1
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/HBoxContainer2"]
+margin_left = 422.0
+margin_right = 498.0
+margin_bottom = 40.0
 
 [node name="Button" type="Button" parent="VBoxContainer"]
-margin_left = 276.0
-margin_top = 408.0
-margin_right = 444.0
-margin_bottom = 452.0
+margin_left = 240.0
+margin_top = 548.0
+margin_right = 480.0
+margin_bottom = 592.0
 size_flags_horizontal = 4
 custom_styles/hover = ExtResource( 8 )
 custom_styles/pressed = ExtResource( 6 )
@@ -124,12 +217,14 @@ custom_styles/focus = SubResource( 2 )
 custom_styles/disabled = ExtResource( 5 )
 custom_styles/normal = ExtResource( 7 )
 custom_fonts/font = SubResource( 3 )
-text = "SET COLORS"
+text = "Go to Cam Screen"
 [connection signal="color_changed" from="VBoxContainer/FACE/ColorPickerButton" to="." method="_on_FACE"]
 [connection signal="color_changed" from="VBoxContainer/IRIS/ColorPickerButton" to="." method="_on_IRIS"]
 [connection signal="color_changed" from="VBoxContainer/EYELIDCoL/ColorPickerButton" to="." method="_on_EYELID"]
 [connection signal="color_changed" from="VBoxContainer/PUPILCOL/ColorPickerButton" to="." method="_on_PUPILCOl"]
 [connection signal="color_changed" from="VBoxContainer/MOUTHCOL/ColorPickerButton" to="." method="_on_MOUTH"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/HSlider" to="." method="_on_HSlider_value_changed"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer2/CheckButton" to="." method="_on_CheckButton_toggled"]
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_Button_pressed"]
 
 [editable path="VBoxContainer/FACE"]

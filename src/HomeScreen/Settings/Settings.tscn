@@ -12,8 +12,8 @@ font_data = ExtResource( 3 )
 [node name="SettingsControl" parent="." instance=ExtResource( 1 )]
 
 [node name="MainScene" parent="." instance=ExtResource( 2 )]
-position = Vector2( -58.1732, 415.175 )
-scale = Vector2( 0.491722, 0.491722 )
+position = Vector2( -74.9911, 487.492 )
+scale = Vector2( 0.444314, 0.444314 )
 inMainScene = false
 
 [node name="InfoLabel" type="Label" parent="."]

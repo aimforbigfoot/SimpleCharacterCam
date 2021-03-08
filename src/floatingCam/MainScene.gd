@@ -15,6 +15,7 @@ onready var eyeIrisL := $face/eye/iris
 onready var eyeIrisR := $face/eye2/iris
 
 export var inMainScene := true
+var tempCouinterDoNotDelte := 0
 onready var lookAtEr := $lookatEr
 export var angleFrition := 0.45
 export var faceFric := 0.02
@@ -37,7 +38,7 @@ press H to see this message again, this is the (h)elp message
 press f to go (f)ullscreen, and exit it \n
 press b to go (b)ack home \n
 press 0 to go to fl(0)ating mode \n
-press e to go to window(e)d mode \n
+press w to go to (w)indowed mode \n
 press esc to close the program - or alt + f4
 """
 
@@ -50,6 +51,7 @@ func _ready() -> void:
 	effect.format = 0
 	randomize()
 	if inMainScene:
+		OS.set_window_always_on_top(false)
 		OS.alert(beginningInfoText, "READ ME")
 		OS.set_window_always_on_top(true)
 		OS.window_per_pixel_transparency_enabled = false
@@ -71,13 +73,12 @@ func _physics_process(delta: float) -> void:
 		OS.set_window_always_on_top(true)
 	if Input.is_action_just_pressed("f"):
 		OS.window_fullscreen = !OS.window_fullscreen
-		print("presed")
-		OS.window_per_pixel_transparency_enabled = true
+		OS.window_per_pixel_transparency_enabled = false
 		get_tree().get_root().set_transparent_background(true)
 #	print(get_global_mouse_position())
 	if Input.is_action_pressed("b"):
 		get_tree().change_scene("res://src/HomeScreen/HomeScreen.tscn")
-	if Input.is_action_pressed("eee"):
+	if Input.is_action_pressed("w"):
 		print(OS.window_size)
 		OS.window_size.y = OS.window_size.x
 		OS.window_borderless = false 
@@ -175,7 +176,7 @@ func _process(delta: float) -> void:
 	
 	if noiseLevel < 120 or true:
 #SIMPLEFIEDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
-		var clamped :float = range_lerp(noiseLevel, 78, 135, 10, 0  )
+		var clamped :float = range_lerp(noiseLevel, 78, 135, 10, 0  )*Global.sensitivity
 		var xVal : float = (-0.014*clamped*clamped+2)
 		var yVal : float = (0.014*clamped*clamped+0.75)
 
@@ -212,7 +213,7 @@ func _process(delta: float) -> void:
 ##	print(noiseLevel)
 ##	print(xVal,yVal)
 	
-	if Input.is_action_pressed("rightClick"):
+	if Input.is_action_pressed("rightClick") and  Global.canBlink:
 #	print("timer timed out")
 		tween.interpolate_property(eyeLidl, "modulate", Color8(Global.eyeLidCol.r,Global.eyeLidCol.g,Global.eyeLidCol.b,0), Global.eyeLidCol, dur, Tween.TRANS_CIRC,Tween.EASE_OUT)
 		tween.interpolate_property(eyeLidr, "modulate", Color8(Global.eyeLidCol.r,Global.eyeLidCol.g,Global.eyeLidCol.b,0), Global.eyeLidCol, dur, Tween.TRANS_CIRC,Tween.EASE_OUT)
@@ -225,23 +226,28 @@ func _process(delta: float) -> void:
 func _on_Timer_timeout() -> void:
 #	$AnimationPlayer.play("blink")
 #	print("timer timed out")
-	tween.interpolate_property(eyeLidl, "modulate", Color8(Global.eyeLidCol.r,Global.eyeLidCol.g,Global.eyeLidCol.b,0), Global.eyeLidCol, dur, Tween.TRANS_CIRC,Tween.EASE_OUT)
-	tween.interpolate_property(eyeLidr, "modulate", Color8(Global.eyeLidCol.r,Global.eyeLidCol.g,Global.eyeLidCol.b,0), Global.eyeLidCol, dur, Tween.TRANS_CIRC,Tween.EASE_OUT)
-
-	tween.interpolate_property(eyeLidl, "modulate", Global.eyeLidCol, Color8(Global.eyeLidCol.r,Global.eyeLidCol.g,Global.eyeLidCol.b,0) ,dur , Tween.TRANS_CIRC,Tween.EASE_IN)
-	tween.interpolate_property(eyeLidr, "modulate", Global.eyeLidCol, Color8(Global.eyeLidCol.r,Global.eyeLidCol.g,Global.eyeLidCol.b,0) , dur, Tween.TRANS_CIRC,Tween.EASE_IN)
-	tween.start()
-#	used to be 1,7 for rand_range
-	$Timer.start(rand_range(1,7))
+	if tempCouinterDoNotDelte < 1:
+# warning-ignore:narrowing_conversion
+		tween.interpolate_property(eyeLidl, "modulate", Color8(Global.eyeLidCol.r,Global.eyeLidCol.g,Global.eyeLidCol.b,0), Global.eyeLidCol, dur, Tween.TRANS_CIRC,Tween.EASE_OUT)
+# warning-ignore:narrowing_conversion
+		tween.interpolate_property(eyeLidr, "modulate", Color8(Global.eyeLidCol.r,Global.eyeLidCol.g,Global.eyeLidCol.b,0), Global.eyeLidCol, dur, Tween.TRANS_CIRC,Tween.EASE_OUT)
+# warning-ignore:narrowing_conversion
+		tween.interpolate_property(eyeLidl, "modulate", Global.eyeLidCol, Color8(Global.eyeLidCol.r,Global.eyeLidCol.g,Global.eyeLidCol.b,0) ,dur , Tween.TRANS_CIRC,Tween.EASE_IN)
+# warning-ignore:narrowing_conversion
+		tween.interpolate_property(eyeLidr, "modulate", Global.eyeLidCol, Color8(Global.eyeLidCol.r,Global.eyeLidCol.g,Global.eyeLidCol.b,0) , dur, Tween.TRANS_CIRC,Tween.EASE_IN)
+		tween.start()
+	#	used to be 1,7 for rand_range
+		$Timer.start(rand_range(1,7))
+		tempCouinterDoNotDelte += 1
 
 
 func _on_moveTimer_timeout() -> void:
 	if oldMousePos == get_global_mouse_position():
 		randomLook = true
-		print("swtiched to true")
+#		print("swtiched to true")
 		pass
 	else :
-		print("swtiched to false")
+#		print("swtiched to false")
 		randomLook = false
 		pass
 	oldMousePos = get_global_mouse_position()
